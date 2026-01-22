@@ -1,0 +1,997 @@
+concept_id,concept_name
+sympatric_speciation,Sympatric speciation
+sympatry,Sympatry
+biology,Biology
+genetic_algorithm,Genetic algorithm
+gene_flow,Gene flow
+evolutionary_biology,Evolutionary biology
+ecological_speciation,Ecological speciation
+genetic_architecture,Genetic architecture
+adaptation_(eye),Adaptation (eye)
+cichlid,Cichlid
+genome,Genome
+reproductive_isolation,Reproductive isolation
+parapatric_speciation,Parapatric speciation
+ecology,Ecology
+genetics,Genetics
+quantitative_trait_locus,Quantitative trait locus
+genetic_variation,Genetic variation
+gene,Gene
+population,Population
+demography,Demography
+neuroscience,Neuroscience
+fishery,Fishery
+fish_<actinopterygii>,Fish <Actinopterygii>
+sociology,Sociology
+phylum,Phylum
+mitochondrial_dna,Mitochondrial DNA
+phylogenetics,Phylogenetics
+non-mendelian_inheritance,Non-Mendelian inheritance
+inheritance_(genetic_algorithm),Inheritance (genetic algorithm)
+genomics,Genomics
+phylogenetic_tree,Phylogenetic tree
+rhinoceros,Rhinoceros
+conservation_science,Conservation science
+geography,Geography
+computational_biology,Computational biology
+zoology,Zoology
+biodiversity,Biodiversity
+lineage_(genetic),Lineage (genetic)
+genome_evolution,Genome evolution
+ralstonia_solanacearum,Ralstonia solanacearum
+pathogen,Pathogen
+bacterial_wilt,Bacterial wilt
+comparative_genomics,Comparative genomics
+microbiology,Microbiology
+mutation,Mutation
+severe_acute_respiratory_syndrome_coronavirus_2_(sars-cov-2),Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)
+coronavirus_disease_2019_(covid-19),Coronavirus disease 2019 (COVID-19)
+genetic_fitness,Genetic Fitness
+coronavirus,Coronavirus
+disease,Disease
+medicine,Medicine
+pathology,Pathology
+infectious_disease_(medical_specialty),Infectious disease (medical specialty)
+protist,Protist
+diversity_(politics),Diversity (politics)
+molecular_ecology,Molecular ecology
+evolutionary_ecology,Evolutionary ecology
+biosphere,Biosphere
+host_(biology),Host (biology)
+anthropology,Anthropology
+inbreeding_depression,Inbreeding depression
+inbreeding,Inbreeding
+small_population_size,Small population size
+population_fragmentation,Population fragmentation
+extinction_(optical_mineralogy),Extinction (optical mineralogy)
+genetic_diversity,Genetic diversity
+habitat,Habitat
+paleontology,Paleontology
+retrotransposon,Retrotransposon
+transposable_element,Transposable element
+transposition_(logic),Transposition (logic)
+horizontal_transmission,Horizontal transmission
+horizontal_gene_transfer,Horizontal gene transfer
+negative_selection,Negative selection
+vertebrate,Vertebrate
+eukaryote,Eukaryote
+virus,Virus
+linguistics,Linguistics
+philosophy,Philosophy
+ecotype,Ecotype
+local_adaptation,Local adaptation
+linkage_disequilibrium,Linkage disequilibrium
+coalescent_theory,Coalescent theory
+population_genetics,Population genetics
+allele,Allele
+haplotype,Haplotype
+peromyscus,Peromyscus
+ectopic_recombination,Ectopic recombination
+recombination,Recombination
+chromosomal_inversion,Chromosomal inversion
+structural_variation,Structural variation
+chromosome,Chromosome
+genetic_recombination,Genetic recombination
+karyotype,Karyotype
+microbiome,Microbiome
+mammal,Mammal
+convergent_evolution,Convergent evolution
+context_(archaeology),Context (archaeology)
+somatic_hypermutation,Somatic hypermutation
+apobec,APOBEC
+pandemic,Pandemic
+sequence_(biology),Sequence (biology)
+virology,Virology
+whole_genome_sequencing,Whole genome sequencing
+b_cell,B cell
+antibody,Antibody
+molybdenum,Molybdenum
+nitrogenase,Nitrogenase
+cofactor,Cofactor
+archaea,Archaea
+chemistry,Chemistry
+bacteria,Bacteria
+biochemistry,Biochemistry
+enzyme,Enzyme
+nitrogen_fixation,Nitrogen fixation
+inorganic_chemistry,Inorganic chemistry
+concatenation_(mathematics),Concatenation (mathematics)
+phylogenomics,Phylogenomics
+mathematics,Mathematics
+combinatorics,Combinatorics
+clade,Clade
+somatic_cell,Somatic cell
+variation_(astronomy),Variation (astronomy)
+human_genome,Human genome
+physics,Physics
+astronomy,Astronomy
+human_genetics,Human genetics
+human_evolution,Human evolution
+human_genetic_variation,Human genetic variation
+model_organism,Model organism
+monophyly,Monophyly
+tree_of_life_(biology),Tree of life (biology)
+candidatus,Candidatus
+transmission_(telecommunications),Transmission (telecommunications)
+dna_sequencing,DNA sequencing
+computer_science,Computer science
+telecommunications,Telecommunications
+climate_change,Climate change
+coral,Coral
+symbiosis,Symbiosis
+mobile_genetic_elements,Mobile genetic elements
+novelty,Novelty
+diversification_(marketing_strategy),Diversification (marketing strategy)
+theology,Theology
+marketing,Marketing
+business,Business
+metagenomics,Metagenomics
+gut_microbiome,Gut microbiome
+functional_genomics,Functional genomics
+gata_transcription_factor,GATA transcription factor
+plant_evolution,Plant evolution
+chloroplast,Chloroplast
+botany,Botany
+flowering_plant,Flowering plant
+gene_expression,Gene expression
+promoter,Promoter
+isolation_(microbiology),Isolation (microbiology)
+incipient_speciation,Incipient speciation
+face_(sociological_concept),Face (sociological concept)
+bioinformatics,Bioinformatics
+social_science,Social science
+selection_(genetic_algorithm),Selection (genetic algorithm)
+crop,Crop
+artificial_intelligence,Artificial intelligence
+introgression,Introgression
+extant_taxon,Extant taxon
+polyploid,Polyploid
+gene_duplication,Gene duplication
+longevity,Longevity
+life_span,Life span
+rockfish,Rockfish
+sebastes,Sebastes
+2019-20_coronavirus_outbreak,2019-20 coronavirus outbreak
+outbreak,Outbreak
+species_complex,Species complex
+domestication,Domestication
+foxtail,Foxtail
+conquest,CONQUEST
+genome_biology,Genome Biology
+genealogy,Genealogy
+history,History
+ancient_history,Ancient history
+dna_methylation,DNA methylation
+dna,DNA
+conservation_genetics,Conservation genetics
+astrophysics,Astrophysics
+microsatellite,Microsatellite
+overdominance,Overdominance
+mutation_accumulation,Mutation Accumulation
+mutation_rate,Mutation rate
+genetic_genealogy,Genetic genealogy
+microbial_ecology,Microbial ecology
+medical_microbiology,Medical microbiology
+interconnection,Interconnection
+astrobiology,Astrobiology
+computer_network,Computer network
+phylogenetic_network,Phylogenetic network
+evolution_of_mammals,Evolution of mammals
+vicariance,Vicariance
+sensu,Sensu
+cereus,Cereus
+bacillus_cereus,Bacillus cereus
+genus,Genus
+repertoire,Repertoire
+antibody_repertoire,Antibody Repertoire
+function_(biology),Function (biology)
+subject_(documents),Subject (documents)
+acoustics,Acoustics
+library_science,Library science
+genetic_monitoring,Genetic monitoring
+machine_learning,Machine learning
+scale_(ratio),Scale (ratio)
+cartography,Cartography
+phylogeography,Phylogeography
+eubacterium,Eubacterium
+subspecies,Subspecies
+spermatogenesis,Spermatogenesis
+endocrinology,Endocrinology
+inference,Inference
+robustness_(evolution),Robustness (evolution)
+covariance,Covariance
+rate_of_evolution,Rate of evolution
+phylogenetic_comparative_methods,Phylogenetic comparative methods
+predictability,Predictability
+range_(aeronautics),Range (aeronautics)
+statistics,Statistics
+materials_science,Materials science
+composite_material,Composite material
+evolvability,Evolvability
+platypus,Platypus
+microchromosome,Microchromosome
+y_chromosome,Y chromosome
+x_chromosome,X chromosome
+sanger_sequencing,Sanger sequencing
+pseudoautosomal_region,Pseudoautosomal region
+stickleback,Stickleback
+x-inactivation,X-inactivation
+human_virome,Human virome
+plant_virus,Plant virus
+coevolution,Coevolution
+viral_evolution,Viral evolution
+giant_virus,Giant Virus
+homology_(biology),Homology (biology)
+epigenetics,Epigenetics
+piwi-interacting_rna,Piwi-interacting RNA
+gene_silencing,Gene silencing
+homo_sapiens,Homo sapiens
+effective_population_size,Effective population size
+natural_selection,Natural selection
+eusociality,Eusociality
+bumblebee,Bumblebee
+pollinator,Pollinator
+pollination,Pollination
+pollen,Pollen
+hymenoptera,Hymenoptera
+vietnamese,Vietnamese
+indigenous,Indigenous
+mainland,Mainland
+nucleotide_diversity,Nucleotide diversity
+austronesian_languages,Austronesian languages
+cultural_diversity,Cultural diversity
+ethnology,Ethnology
+phenotypic_plasticity,Phenotypic plasticity
+holobiont,Holobiont
+phenotype,Phenotype
+lungfish,Lungfish
+synteny,Synteny
+living_fossil,Living fossil
+microfungi,Microfungi
+taxonomy_(biology),Taxonomy (biology)
+chloroplast_dna,Chloroplast DNA
+caesalpinioideae,Caesalpinioideae
+ndhf,NdhF
+taxon,Taxon
+molecular_clock,Molecular clock
+fabaceae,Fabaceae
+paraphyly,Paraphyly
+sister_group,Sister group
+gene_family,Gene family
+segmental_duplication,Segmental duplication
+stressor,Stressor
+glucocorticoid,Glucocorticoid
+psychosocial,Psychosocial
+primate,Primate
+psychology,Psychology
+psychotherapist,Psychotherapist
+adaptive_radiation,Adaptive radiation
+sequence_assembly,Sequence assembly
+insect,Insect
+drosophila_melanogaster,Drosophila melanogaster
+reference_genome,Reference genome
+transcriptome,Transcriptome
+asteraceae,Asteraceae
+concordance,Concordance
+snail,Snail
+pathogenicity,Pathogenicity
+fungal_disease,Fungal disease
+biomineralization,Biomineralization
+fossil_record,Fossil Record
+macroevolution,Macroevolution
+geologic_record,Geologic record
+deep_time,Deep time
+hominidae,Hominidae
+biological_evolution,Biological evolution
+genome_size,Genome size
+taxonomic_rank,Taxonomic rank
+alpha_diversity,Alpha diversity
+bacterial_genome_size,Bacterial genome size
+species_richness,Species richness
+gorilla,Gorilla
+pan_paniscus,Pan paniscus
+bonobo,Bonobo
+pongo_pygmaeus,Pongo pygmaeus
+process_(computing),Process (computing)
+operating_system,Operating system
+roseobacter,Roseobacter
+phylogenetic_nomenclature,Phylogenetic nomenclature
+epistasis,Epistasis
+fitness_landscape,Fitness landscape
+inclusive_fitness,Inclusive fitness
+rna,RNA
+ribosomal_rna,Ribosomal RNA
+flatworm,Flatworm
+steppe,Steppe
+transect,Transect
+polyphyly,Polyphyly
+bacterial_taxonomy,Bacterial taxonomy
+16s_ribosomal_rna,16S ribosomal RNA
+interdependence,Interdependence
+human_evolutionary_genetics,Human evolutionary genetics
+law,Law
+political_science,Political science
+parallel_evolution,Parallel evolution
+acropora,Acropora
+anthozoa,Anthozoa
+symbiodinium,Symbiodinium
+coral_reef,Coral reef
+epigenesis,Epigenesis
+offspring,Offspring
+epigenetic_regulation_of_neurogenesis,Epigenetic regulation of neurogenesis
+chromatin_remodeling,Chromatin remodeling
+pregnancy,Pregnancy
+regulation_of_gene_expression,Regulation of gene expression
+gene_regulatory_network,Gene regulatory network
+adaptive_value,Adaptive value
+psychological_resilience,Psychological resilience
+expression_(computer_science),Expression (computer science)
+programming_language,Programming language
+census,Census
+rank_(graph_theory),Rank (graph theory)
+prokaryote,Prokaryote
+abundance_(ecology),Abundance (ecology)
+loss_function,Loss function
+social_distance,Social distance
+chordate,Chordate
+ploidy,Ploidy
+leishmania_donovani,Leishmania donovani
+leishmania,Leishmania
+protozoa,Protozoa
+leishmaniasis,Leishmaniasis
+parasite_hosting,Parasite hosting
+visceral_leishmaniasis,Visceral leishmaniasis
+world_wide_web,World Wide Web
+constraint_(computer-aided_design),Constraint (computer-aided design)
+geometry,Geometry
+movement_(music),Movement (music)
+environmental_health,Environmental health
+aesthetics,Aesthetics
+drosophila_(subgenus),Drosophila (subgenus)
+contig,Contig
+identification_(biology),Identification (biology)
+pastoralism,Pastoralism
+multiple_sclerosis,Multiple sclerosis
+immunology,Immunology
+livestock,Livestock
+adaptive_evolution,Adaptive evolution
+alternative_splicing,Alternative splicing
+exon,Exon
+biological_dispersal,Biological dispersal
+workflow,Workflow
+pipeline_(software),Pipeline (software)
+data_science,Data science
+viral_phylodynamics,Viral phylodynamics
+database,Database
+ectotherm,Ectotherm
+evolutionary_physiology,Evolutionary physiology
+compartmentalization_(fire_protection),Compartmentalization (fire protection)
+hierarchy,Hierarchy
+economics,Economics
+market_economy,Market economy
+1000_genomes_project,1000 Genomes Project
+haplotype_estimation,Haplotype estimation
+single-nucleotide_polymorphism,Single-nucleotide polymorphism
+genotype,Genotype
+bryophyte,Bryophyte
+sorting,Sorting
+plastid,Plastid
+dna_barcoding,DNA barcoding
+bottleneck,Bottleneck
+genetic_drift,Genetic drift
+population_bottleneck,Population bottleneck
+cats,CATS
+embedded_system,Embedded system
+assortative_mating,Assortative mating
+trait,Trait
+pleiotropy,Pleiotropy
+correlation,Correlation
+genetic_correlation,Genetic correlation
+mating,Mating
+genetic_similarity,Genetic similarity
+mesolithic,Mesolithic
+ancient_dna,Ancient DNA
+archaeology,Archaeology
+molecular_epidemiology,Molecular epidemiology
+engineering,Engineering
+electrical_engineering,Electrical engineering
+mytilus,Mytilus
+mussel,Mussel
+brain_size,Brain size
+magnetic_resonance_imaging,Magnetic resonance imaging
+radiology,Radiology
+palindrome,Palindrome
+evolution_of_sexual_reproduction,Evolution of sexual reproduction
+obligate,Obligate
+phylogenetic_diversity,Phylogenetic diversity
+wildlife,Wildlife
+china,China
+wildlife_conservation,Wildlife conservation
+baboon,Baboon
+epigenome,Epigenome
+senescence,Senescence
+population_genomics,Population genomics
+polyphenism,Polyphenism
+insulin_receptor,Insulin receptor
+insulin,Insulin
+cell_biology,Cell biology
+insulin_resistance,Insulin resistance
+most_recent_common_ancestor,Most recent common ancestor
+tree_(set_theory),Tree (set theory)
+ancestor,Ancestor
+root_(linguistics),Root (linguistics)
+mathematical_analysis,Mathematical analysis
+opsin,Opsin
+visual_pigments,Visual pigments
+spectral_sensitivity,Spectral sensitivity
+rhodopsin,Rhodopsin
+light_sensitivity,Light sensitivity
+photoprotection,Photoprotection
+ultraviolet_light,Ultraviolet light
+trichromacy,Trichromacy
+color_vision,Color vision
+optoelectronics,Optoelectronics
+wavelength,Wavelength
+computer_vision,Computer vision
+retinal,Retinal
+photochemistry,Photochemistry
+photosynthesis,Photosynthesis
+systematics,Systematics
+lepidoptera_genitalia,Lepidoptera genitalia
+fission,Fission
+nuclear_physics,Nuclear physics
+neutron,Neutron
+internal_transcribed_spacer,Internal transcribed spacer
+amplicon,Amplicon
+barcode,Barcode
+genetic_marker,Genetic marker
+environmental_dna,Environmental DNA
+polymerase_chain_reaction,Polymerase chain reaction
+ecological_genetics,Ecological genetics
+dothideomycetes,Dothideomycetes
+molecular_evolution,Molecular evolution
+heterogametic_sex,Heterogametic sex
+sexual_dimorphism,Sexual dimorphism
+sex_linkage,Sex linkage
+sexual_selection,Sexual selection
+w_chromosome,W chromosome
+three-domain_system,Three-domain system
+encode,ENCODE
+metabolic_pathway,Metabolic pathway
+divergence_(linguistics),Divergence (linguistics)
+locus_(genetics),Locus (genetics)
+subclade,Subclade
+gut_flora,Gut flora
+human_microbiome,Human microbiome
+abiotic_component,Abiotic component
+statistical_model,Statistical model
+missing_data,Missing data
+transient_receptor_potential_channel,Transient receptor potential channel
+subfamily,Subfamily
+common_descent,Common descent
+nomenclature,Nomenclature
+superfamily,SUPERFAMILY
+receptor,Receptor
+phylogenetic_relationship,Phylogenetic relationship
+pleistocene,Pleistocene
+demographic_history,Demographic history
+population_size,Population size
+supermatrix,Supermatrix
+algebra_over_a_field,Algebra over a field
+pure_mathematics,Pure mathematics
+current_algebra,Current algebra
+affine_lie_algebra,Affine Lie algebra
+alphaproteobacteria,Alphaproteobacteria
+biological_classification,Biological classification
+strain_(injury),Strain (injury)
+type_(biology),Type (biology)
+anatomy,Anatomy
+neutral_theory_of_molecular_evolution,Neutral theory of molecular evolution
+pairwise_comparison,Pairwise comparison
+outlier,Outlier
+background_selection,Background selection
+gene_density,Gene density
+statistic,Statistic
+plant_immunity,Plant Immunity
+arabidopsis,Arabidopsis
+mutant,Mutant
+plumage,Plumage
+feather,Feather
+iridescence,Iridescence
+structural_coloration,Structural coloration
+phenotypic_trait,Phenotypic trait
+photonic_crystal,Photonic crystal
+haplogroup,Haplogroup
+gene_pool,Gene pool
+breed,Breed
+biotechnology,Biotechnology
+agriculture,Agriculture
+substitution_(logic),Substitution (logic)
+transmissibility_(structural_dynamics),Transmissibility (structural dynamics)
+vibration_isolation,Vibration isolation
+quantum_mechanics,Quantum mechanics
+vibration,Vibration
+immune_system,Immune system
+mechanism_(biology),Mechanism (biology)
+plasmid,Plasmid
+epistemology,Epistemology
+amphibian,Amphibian
+supertree,Supertree
+enhancer,Enhancer
+macaque,Macaque
+metarhizium,Metarhizium
+generalist_and_specialist_species,Generalist and specialist species
+entomology,Entomology
+biological_pest_control,Biological pest control
+metarhizium_anisopliae,Metarhizium anisopliae
+distribution_(mathematics),Distribution (mathematics)
+endosymbiosis,Endosymbiosis
+abiogenesis,Abiogenesis
+ageing,Ageing
+key_(lock),Key (lock)
+parasitology,Parasitology
+parasitism,Parasitism
+exaptation,Exaptation
+firmicutes,Firmicutes
+gram,Gram
+statistical_physics,Statistical physics
+ascomycota,Ascomycota
+niche,Niche
+vulnerability_(computing),Vulnerability (computing)
+computer_security,Computer security
+cerebrum,Cerebrum
+neuron,Neuron
+central_nervous_system,Central nervous system
+deltaproteobacteria,Deltaproteobacteria
+gammaproteobacteria,Gammaproteobacteria
+oogenesis,Oogenesis
+cell_lineage,Cell lineage
+ovary,Ovary
+atlas_(anatomy),Atlas (anatomy)
+oocyte,Oocyte
+cellular_differentiation,Cellular differentiation
+embryo,Embryo
+econometrics,Econometrics
+sensory_system,Sensory system
+olfactory_system,Olfactory system
+pheromone,Pheromone
+olfaction,Olfaction
+functional_diversity,Functional diversity
+sex_pheromone,Sex pheromone
+olfactory_receptor,Olfactory receptor
+epigenomics,Epigenomics
+phenomics,Phenomics
+contact_tracing,Contact tracing
+tracing,Tracing
+visualization,Visualization
+data_mining,Data mining
+phenome,Phenome
+biobank,Biobank
+polygenic_risk_score,Polygenic risk score
+dimensionality_reduction,Dimensionality reduction
+principal_component_analysis,Principal component analysis
+multifactor_dimensionality_reduction,Multifactor dimensionality reduction
+plasticity,Plasticity
+thermodynamics,Thermodynamics
+hypoxia_(environmental),Hypoxia (environmental)
+organic_chemistry,Organic chemistry
+oxygen,Oxygen
+ecdysteroid,Ecdysteroid
+arthropod,Arthropod
+larva,Larva
+subgenus,Subgenus
+allium,Allium
+rose_(mathematics),Rose (mathematics)
+rugosa,Rugosa
+horticulture,Horticulture
+competition_(biology),Competition (biology)
+rivalry,Rivalry
+mate_choice,Mate choice
+macroeconomics,Macroeconomics
+cline_(biology),Cline (biology)
+plateau_(mathematics),Plateau (mathematics)
+trimming,Trimming
+multiple_sequence_alignment,Multiple sequence alignment
+sequence_alignment,Sequence alignment
+occam's_razor,Occam's razor
+peptide_sequence,Peptide sequence
+functional_organization,Functional organization
+orobanchaceae,Orobanchaceae
+haustorium,Haustorium
+parasitic_plant,Parasitic plant
+molecular_phylogenetics,Molecular phylogenetics
+modularity_(biology),Modularity (biology)
+bacteriophage,Bacteriophage
+escherichia_coli,Escherichia coli
+ecological_niche,Ecological niche
+section_(typography),Section (typography)
+advertising,Advertising
+germline,Germline
+annelid,Annelid
+juvenile,Juvenile
+lernaean_hydra,Lernaean Hydra
+planarian,Planarian
+regeneration_(biology),Regeneration (biology)
+cell_type,Cell type
+homologous_chromosome,Homologous chromosome
+cell,Cell
+microsporidia,Microsporidia
+spore,Spore
+mendelian_inheritance,Mendelian inheritance
+heredity,Heredity
+balancing_selection,Balancing selection
+loss_of_heterozygosity,Loss of heterozygosity
+oryza_sativa,Oryza sativa
+oryza,Oryza
+zygote,Zygote
+embryonic_stem_cell,Embryonic stem cell
+soma,Soma
+progenitor_cell,Progenitor cell
+developmental_biology,Developmental biology
+stem_cell,Stem cell
+embryogenesis,Embryogenesis
+r_package,R package
+kinase,Kinase
+protein_kinase_domain,Protein kinase domain
+saccharomyces_cerevisiae,Saccharomyces cerevisiae
+organism,Organism
+neanderthal,Neanderthal
+cave,Cave
+wolbachia,Wolbachia
+sperm_competition,Sperm competition
+melanogaster,Melanogaster
+sperm,Sperm
+proteome,Proteome
+sexual_conflict,Sexual conflict
+myb,MYB
+transcription_factor,Transcription factor
+krill,Krill
+antarctic_krill,Antarctic krill
+comparative_biology,Comparative biology
+computational_science,Computational science
+theobroma,Theobroma
+biotic_component,Biotic component
+biotic_stress,Biotic stress
+abiotic_stress,Abiotic stress
+bronze_age,Bronze Age
+period_(music),Period (music)
+human_migration,Human migration
+attractor,Attractor
+fixation_(population_genetics),Fixation (population genetics)
+intuition,Intuition
+evolutionary_dynamics,Evolutionary dynamics
+cognitive_science,Cognitive science
+experimental_evolution,Experimental evolution
+yeast,Yeast
+adaptability,Adaptability
+evolutionary_developmental_biology,Evolutionary developmental biology
+focus_(optics),Focus (optics)
+optics,Optics
+geographic_variation,Geographic variation
+algae,Algae
+noncoding_dna,Noncoding DNA
+pedigree_chart,Pedigree chart
+endangered_species,Endangered species
+threatened_species,Threatened species
+captive_breeding,Captive breeding
+core_(optical_fiber),Core (optical fiber)
+human_microbiome_project,Human Microbiome Project
+brown_algae,Brown algae
+extinction_event,Extinction event
+reticulate,Reticulate
+reticulate_evolution,Reticulate evolution
+sampling_(signal_processing),Sampling (signal processing)
+detector,Detector
+ecological_selection,Ecological selection
+octocorallia,Octocorallia
+gorgonian,Gorgonian
+cnidaria,Cnidaria
+coelenterata,Coelenterata
+honeysuckle,Honeysuckle
+carotenoid,Carotenoid
+traditional_chinese_medicine,Traditional Chinese medicine
+alternative_medicine,Alternative medicine
+structuring,Structuring
+finance,Finance
+akkermansia,Akkermansia
+akkermansia_muciniphila,Akkermansia muciniphila
+bacteroides,Bacteroides
+architecture,Architecture
+art,Art
+visual_arts,Visual arts
+betacoronavirus,Betacoronavirus
+epizootic,Epizootic
+snp,SNP
+cluster_analysis,Cluster analysis
+xylem,Xylem
+resistance_(ecology),Resistance (ecology)
+hydraulic_conductivity,Hydraulic conductivity
+soil_water,Soil water
+complete_sequence,Complete sequence
+genetic_divergence,Genetic divergence
+annotation,Annotation
+filter_(signal_processing),Filter (signal processing)
+adaptive_sampling,Adaptive sampling
+monte_carlo_method,Monte Carlo method
+retina,Retina
+developmental_psychology,Developmental psychology
+bayesian_probability,Bayesian probability
+bayes'_theorem,Bayes' theorem
+bayesian_inference,Bayesian inference
+cladistics,Cladistics
+international_code_of_zoological_nomenclature,International Code of Zoological Nomenclature
+brassicaceae,Brassicaceae
+nuclear_gene,Nuclear gene
+podoviridae,Podoviridae
+siphoviridae,Siphoviridae
+myoviridae,Myoviridae
+virus_classification,Virus classification
+subfunctionalization,Subfunctionalization
+salvelinus,Salvelinus
+trout,Trout
+diapause,Diapause
+circadian_clock,Circadian clock
+circadian_rhythm,Circadian rhythm
+sociality,Sociality
+chronobiology,Chronobiology
+biological_clock,Biological clock
+clock,CLOCK
+hybrid_zone,Hybrid zone
+contact_zone,Contact zone
+geology,Geology
+geochemistry,Geochemistry
+flexibility_(engineering),Flexibility (engineering)
+allosteric_regulation,Allosteric regulation
+protein_dynamics,Protein dynamics
+protein_structure,Protein structure
+protein_folding,Protein folding
+nanopore_sequencing,Nanopore sequencing
+polishing,Polishing
+nanopore,Nanopore
+nanotechnology,Nanotechnology
+cyperaceae,Cyperaceae
+tribe,Tribe
+poaceae,Poaceae
+spatial_epidemiology,Spatial epidemiology
+epidemiology,Epidemiology
+sample_(material),Sample (material)
+species_identification,Species identification
+chromatography,Chromatography
+east_asia,East Asia
+middle_east,Middle East
+positive_selection,Positive selection
+lamprey,Lamprey
+myr,myr
+fish_migration,Fish migration
+chinook_wind,Chinook wind
+oncorhynchus,Oncorhynchus
+sexual_maturity,Sexual maturity
+arabidopsis_thaliana,Arabidopsis thaliana
+rna_splicing,RNA splicing
+linkage_(software),Linkage (software)
+anthropocene,Anthropocene
+environmental_ethics,Environmental ethics
+scope_(computer_science),Scope (computer science)
+outbreeding_depression,Outbreeding depression
+interspecific_hybridization,Interspecific hybridization
+hybrid,Hybrid
+genbank,GenBank
+information_retrieval,Information retrieval
+sequence_database,Sequence database
+tree_rearrangement,Tree rearrangement
+software,Software
+killifish,Killifish
+planaria,Planaria
+cerebellum,Cerebellum
+allele_frequency,Allele frequency
+temperate_climate,Temperate climate
+seasonality,Seasonality
+equifinality,Equifinality
+unpacking,Unpacking
+trait_theory,Trait theory
+big_five_personality_traits,Big Five personality traits
+social_psychology,Social psychology
+personality,Personality
+commensalism,Commensalism
+colonisation_resistance,Colonisation resistance
+colonization,Colonization
+heterochrony,Heterochrony
+terminology,Terminology
+maturity_(psychological),Maturity (psychological)
+clarity,CLARITY
+ontogeny,Ontogeny
+convolutional_neural_network,Convolutional neural network
+generalizability_theory,Generalizability theory
+genetic_variants,Genetic variants
+venom,Venom
+track_(disk_drive),Track (disk drive)
+expression_quantitative_trait_loci,Expression quantitative trait loci
+colocalization,Colocalization
+genome-wide_association_study,Genome-wide association study
+ancestry-informative_marker,Ancestry-informative marker
+genetic_association,Genetic association
+genetic_admixture,Genetic admixture
+fungal_diversity,Fungal Diversity
+field_(mathematics),Field (mathematics)
+passerine,Passerine
+microbial_genetics,Microbial genetics
+developmental_plasticity,Developmental plasticity
+hibernation_(computing),Hibernation (computing)
+state_(computer_science),State (computer science)
+algorithm,Algorithm
+human_biology,Human biology
+endogenous_retrovirus,Endogenous retrovirus
+cancer,Cancer
+computational_genomics,Computational genomics
+conserved_sequence,Conserved sequence
+copy-number_variation,Copy-number variation
+pathological,Pathological
+oral_microbiome,Oral Microbiome
+current_(fluid),Current (fluid)
+autosome,Autosome
+gc-content,GC-content
+dynamics_(music),Dynamics (music)
+condensin,Condensin
+centromere,Centromere
+heterochromatin,Heterochromatin
+merge_(version_control),Merge (version control)
+mitosis,Mitosis
+chromosome_segregation,Chromosome segregation
+connectome,Connectome
+action_selection,Action selection
+action_(physics),Action (physics)
+functional_connectivity,Functional connectivity
+perception,Perception
+variance_(accounting),Variance (accounting)
+quantitative_genetics,Quantitative genetics
+genetic_variability,Genetic variability
+accounting,Accounting
+chromatin,Chromatin
+nucleus,Nucleus
+chromosome_conformation_capture,Chromosome conformation capture
+dormancy,Dormancy
+aestivation,Aestivation
+germination,Germination
+fold_(higher-order_function),Fold (higher-order function)
+protein_engineering,Protein engineering
+haematopoiesis,Haematopoiesis
+replicate,Replicate
+basis_(linear_algebra),Basis (linear algebra)
+biome,Biome
+ecosystem,Ecosystem
+heliconius,Heliconius
+mimicry,Mimicry
+orchidaceae,Orchidaceae
+lexicon,Lexicon
+grammar,Grammar
+natural_language_processing,Natural language processing
+malus,Malus
+biogeography,Biogeography
+cyperus,Cyperus
+telomere,Telomere
+facultative,Facultative
+symbiotic_bacteria,Symbiotic bacteria
+mesoderm,Mesoderm
+lateral_plate_mesoderm,Lateral plate mesoderm
+intermediate_mesoderm,Intermediate mesoderm
+heart_development,Heart development
+progenitor,Progenitor
+phenomenon,Phenomenon
+trace_(psycholinguistics),TRACE (psycholinguistics)
+cognitive_psychology,Cognitive psychology
+spectral_line,Spectral line
+fauna,Fauna
+null_model,Null model
+null_hypothesis,Null hypothesis
+aquaculture,Aquaculture
+chromatophore,Chromatophore
+fish_physiology,Fish physiology
+immunity,Immunity
+plant_development,Plant development
+multicellular_organism,Multicellular organism
+transition_(genetics),Transition (genetics)
+regression,Regression
+herbarium,Herbarium
+set_(abstract_data_type),Set (abstract data type)
+data_set,Data set
+founder_effect,Founder effect
+alpha_(finance),Alpha (finance)
+health_care,Health care
+cronbach's_alpha,Cronbach's alpha
+genotyping,Genotyping
+disequilibrium,Disequilibrium
+ophthalmology,Ophthalmology
+parthenogenesis,Parthenogenesis
+asexuality,Asexuality
+asexual_reproduction,Asexual reproduction
+sexual_reproduction,Sexual reproduction
+gender_studies,Gender studies
+human_sexuality,Human sexuality
+indel,Indel
+immigration,Immigration
+relevance_(law),Relevance (law)
+plant_disease,Plant disease
+caenorhabditis_elegans,Caenorhabditis elegans
+body_plan,Body plan
+perspective_(graphical),Perspective (graphical)
+methylation,Methylation
+darwin_(adl),Darwin (ADL)
+darwinism,Darwinism
+sociocultural_evolution,Sociocultural evolution
+natural_(archaeology),Natural (archaeology)
+modern_evolutionary_synthesis,Modern evolutionary synthesis
+software_engineering,Software engineering
+xiphophorus,Xiphophorus
+stabilizing_selection,Stabilizing selection
+microevolution,Microevolution
+directional_selection,Directional selection
+louse,Louse
+sex_change,Sex change
+mating_system,Mating system
+intraspecific_competition,Intraspecific competition
+tracking_(education),Tracking (education)
+pedagogy,Pedagogy
+eudicots,Eudicots
+blueprint,Blueprint
+regulatory_sequence,Regulatory sequence
+regulator_gene,Regulator gene
+mechanical_engineering,Mechanical engineering
+pangolin,Pangolin
+herbivore,Herbivore
+plant_defense_against_herbivory,Plant defense against herbivory
+mating_preferences,Mating preferences
+herring,Herring
+atlantic_herring,Atlantic herring
+clupea,Clupea
+dengue_virus,Dengue virus
+primer_(cosmetics),Primer (cosmetics)
+gene_rearrangement,Gene rearrangement
+concerted_evolution,Concerted evolution
+term_(time),Term (time)
+acquired_immune_system,Acquired immune system
+histone,Histone
+seahorse,Seahorse
+major_histocompatibility_complex,Major histocompatibility complex
+neofunctionalization,Neofunctionalization
+architecture_domain,Architecture domain
+protein_family,Protein family
+protein_domain,Protein domain
+enterprise_architecture_framework,Enterprise architecture framework
+software_architecture,Software architecture
+devonian,Devonian
+reef,Reef
+kinship,Kinship
+affect_(linguistics),Affect (linguistics)
+cooperative_breeding,Cooperative breeding
+social_evolution,Social evolution
+acyrthosiphon_pisum,Acyrthosiphon pisum
+aphid,Aphid
+myzus_persicae,Myzus persicae
+aphididae,Aphididae
+pest_analysis,PEST analysis
+homoptera,Homoptera
+representation_(politics),Representation (politics)
+politics,Politics
+marchantia_polymorpha,Marchantia polymorpha
+sporophyte,Sporophyte
+gametophyte,Gametophyte
