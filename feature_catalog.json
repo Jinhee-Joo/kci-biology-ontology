@@ -1,0 +1,40 @@
+{
+  "ResearchTask": [
+    "Phylogeny Inference",
+    "Divergence Time Estimation",
+    "Species Delimitation",
+    "Selection Detection",
+    "Population Structure Analysis",
+    "Demographic History Inference",
+    "Trait Evolution Analysis",
+    "Comparative Methods",
+    "Biogeography",
+    "Adaptation Inference",
+    "Hybridization / Introgression Detection",
+    "Gene Flow Analysis"
+  ],
+  "Method": [
+    "Maximum Likelihood",
+    "Bayesian Inference",
+    "Coalescent-based Model",
+    "Birth–Death Model",
+    "dN/dS Analysis",
+    "Approximate Bayesian Computation (ABC)",
+    "Phylogenetic Comparative Methods (PCM)",
+    "Hidden Markov Models",
+    "Simulation-based Inference",
+    "Network Phylogenetics"
+  ],
+  "Software": [
+    "IQ-TREE",
+    "RAxML",
+    "BEAST",
+    "MrBayes",
+    "RevBayes",
+    "STRUCTURE",
+    "ADMIXTURE",
+    "fastsimcoal",
+    "dadi",
+    "HyPhy"
+  ]
+}

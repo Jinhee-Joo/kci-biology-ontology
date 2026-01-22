@@ -1,0 +1,22 @@
+id,title,year,tier,software_detected,method_candidates,ResearchTask_labels,Method_labels,Software_labels
+https://openalex.org/W3096733662,Contrasting signatures of genomic divergence during sympatric speciation,2020,tier1,,,Gene Flow Analysis|Population Structure Analysis|Adaptation Inference,,
+https://openalex.org/W3150028644,Molluscan mitochondrial genomes break the rules,2021,tier1,,,Phylogeny Inference|Trait Evolution Analysis|Comparative Methods,,
+https://openalex.org/W3157220246,Genomic insights into the conservation status of the world’s last remaining Sumatran rhinoceros populations,2021,tier2,,,Population Structure Analysis|Adaptation Inference|Selection Detection,,
+https://openalex.org/W3007358977,The persimmon genome reveals clues to the evolution of a lineage-specific sex determination system in plants,2020,tier1,,,Adaptation Inference|Selection Detection|Trait Evolution Analysis,,
+https://openalex.org/W3094526233,Taxonomy and Phylogenetic Research on Ralstonia solanacearum Species Complex: A Complex Pathogen with Extraordinary Economic Consequences,2020,tier2,,,,,
+https://openalex.org/W4281383093,Analysis of 6.4 million SARS-CoV-2 genomes identifies mutations associated with fitness,2022,tier2,,,Selection Detection|Adaptation Inference,Bayesian Inference,
+https://openalex.org/W3206764122,Diversity and ecology of protists revealed by metabarcoding,2021,tier1,,,Biogeography,,
+https://openalex.org/W3113917743,Strongly deleterious mutations are a primary determinant of extinction risk due to inbreeding depression,2020,tier2,,,Demographic History Inference|Gene Flow Analysis,Simulation-based Inference,
+https://openalex.org/W3010826188,Horizontal transfer and evolution of transposable elements in vertebrates,2020,tier1,,,Selection Detection|Comparative Methods,dN/dS Analysis,
+https://openalex.org/W3014405512,Multiple chromosomal inversions contribute to adaptive divergence of a dune sunflower ecotype,2020,tier1,STRUCTURE,,Population Structure Analysis|Adaptation Inference,Bayesian Inference,STRUCTURE
+https://openalex.org/W4306411852,Chromosomal inversion polymorphisms shape the genomic landscape of deer mice,2022,tier1,STRUCTURE,,Selection Detection|Population Structure Analysis|Adaptation Inference,Bayesian Inference,STRUCTURE
+https://openalex.org/W2999294700,Comparative Analyses of Vertebrate Gut Microbiomes Reveal Convergence between Birds and Bats,2020,tier2,,,Comparative Methods|Adaptation Inference,Phylogenetic Comparative Methods (PCM),
+https://openalex.org/W3035786310,Rampant C→U Hypermutation in the Genomes of SARS-CoV-2 and Other Coronaviruses: Causes and Consequences for Their Short- and Long-Term Evolutionary Trajectories,2020,tier2,,,,,
+https://openalex.org/W3006426838,Reconstructing the evolutionary history of nitrogenases: Evidence for ancestral molybdenum‐cofactor utilization,2020,tier2,,,Phylogeny Inference|Trait Evolution Analysis|Comparative Methods,Phylogenetic Comparative Methods (PCM),
+https://openalex.org/W3005383663,The Multispecies Coalescent Model Outperforms Concatenation Across Diverse Phylogenomic Data Sets,2020,tier1,,,Phylogeny Inference,Coalescent-based Model|Bayesian Inference|Simulation-based Inference,
+https://openalex.org/W3004584205,Patterns of somatic structural variation in human cancer genomes,2020,tier2,STRUCTURE,,,,
+https://openalex.org/W4319068304,Human-specific genetics: new tools to explore the molecular and cellular basis of human evolution,2023,tier1,,,Adaptation Inference|Selection Detection|Trait Evolution Analysis|Comparative Methods,,
+https://openalex.org/W3039975896,Undinarchaeota illuminate DPANN phylogeny and the impact of gene transfer on archaeal evolution,2020,tier1,,,Phylogeny Inference|Gene Flow Analysis,,
+https://openalex.org/W3147222942,Temporal dynamics of SARS-CoV-2 mutation accumulation within and across infected hosts,2021,tier1,,,Phylogeny Inference|Selection Detection,,
+https://openalex.org/W4387823059,Genomics for monitoring and understanding species responses to global climate change,2023,tier2,,,Adaptation Inference,,
+https://openalex.org/W3035842044,Lineage dynamics of the endosymbiotic cell type in the soft coral Xenia,2020,tier2,,,,,
