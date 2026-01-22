@@ -10,22 +10,15 @@ from google.genai.errors import ClientError
 
 from scripts.extract.extract_software import extract_software, SOFTWARE_TO_METHOD
 from scripts.extract.extract_methods import keyword_method_candidates
-
 from scripts.extract.extract_datatype import keyword_datatype_candidates
 from scripts.extract.extract_taxon import keyword_taxon_candidates, keyword_model_organisms
-from scripts.extract.extract_context import keyword_context_candidates
-
-# (선택) Assumption까지 쓸 거면 import
-try:
-    from extract_assumptions import keyword_assumption_candidates
-    USE_ASSUMPTION = True
-except Exception:
-    USE_ASSUMPTION = False
+from scripts.extract.extract_geoscope import keyword_geoscope_candidates
+from scripts.extract.extract_environment import keyword_environment_candidates
+from scripts.extract.extract_contribution import keyword_contribution_candidates
 
 
 # ====== 설정 ======
-JSONL_IN = "data/raw/openalex_evolbio_tiered_500.jsonl"
-
+JSONL_IN  = "data/raw/openalex_evolbio_tiered_500.jsonl"
 JSONL_OUT = "data/raw/annotations/paper_annotations_all_v3.jsonl"
 CSV_OUT   = "data/raw/annotations/paper_annotations_all_v3.csv"
 
@@ -38,55 +31,61 @@ MAX_RETRIES       = 8
 DEFAULT_WAIT_SEC  = 30
 
 
-# ====== 라벨 리스트 (온톨로지에서 쓰는 “정식 라벨”만) ======
+# ====== 라벨 리스트 (온톨로지 “정식 라벨”만) ======
+RESEARCH_TASK_LIST = [
+    "Phylogeny Inference",
+    "Divergence Time Estimation",
+    "Species Delimitation",
+    "Population Structure Analysis",
+    "Demographic History Inference",
+    "Selection / Positive Selection Detection",
+    "Trait Evolution / Ancestral State Reconstruction",
+    "Phylogenetic Comparative Methods",
+    "Biogeography",
+    "Adaptation Inference",
+    "Gene Flow / Introgression Analysis",
+    "Macroevolutionary Pattern Analysis",
+    "Eco-evolutionary Dynamics",
+    "Evolutionary Theory / Conceptual Analysis",
+]
+
 FULL_METHOD_LIST = [
     "Maximum Likelihood",
     "Bayesian Inference",
     "Coalescent-based Model",
     "Birth–Death Model",
     "dN/dS Analysis",
-    "Approximate Bayesian Computation (ABC)",
-    "Phylogenetic Comparative Methods (PCM)",
+    "Approximate Bayesian Computation",
+    "Phylogenetic Comparative Methods",
     "Hidden Markov Models",
     "Simulation-based Inference",
     "Network Phylogenetics",
 ]
 
-RESEARCH_TASK_LIST = [
-    "Phylogeny Inference",
-    "Divergence Time Estimation",
-    "Species Delimitation",
-    "Selection Detection",
-    "Population Structure Analysis",
-    "Demographic History Inference",
-    "Trait Evolution Analysis",
-    "Comparative Methods",
-    "Biogeography",
-    "Adaptation Inference",
-    "Hybridization / Introgression Detection",
-    "Gene Flow Analysis",
-]
-
 SOFTWARE_LIST = [
-    "IQ-TREE", "RAxML", "BEAST", "MrBayes", "RevBayes",
-    "STRUCTURE", "ADMIXTURE", "fastsimcoal", "dadi", "HyPhy"
+    "IQ-TREE", "RAxML",
+    "BEAST", "MrBayes", "RevBayes",
+    "STRUCTURE", "ADMIXTURE",
+    "fastsimcoal", "dadi",
+    "HyPhy"
 ]
 
 DATATYPE_LIST = [
     "Whole Genome Sequence",
-    "Reduced Representation (RADseq, GBS)",
+    "Reduced Representation (RADseq / GBS)",
     "SNP Genotype Data",
     "mtDNA",
     "Nuclear Gene Sequences",
-    "Morphometric Data",
+    "Transcriptome (RNA-seq)",
+    "Morphometric / Phenotypic Trait Data",
     "Behavioral Data",
+    "Experimental Evolution Data",
     "Ecological / Environmental Variables",
     "Fossil Record",
     "Occurrence / Distribution Records",
-    "Transcriptome (RNA-seq)",
+    "Time-series Population Data",
 ]
 
-# Taxon은 계층이 가능하지만, MVP는 “상위 그룹 + 모델생물”로 고정 추천
 TAXON_LIST = [
     "Vertebrates",
     "Invertebrates",
@@ -104,38 +103,51 @@ TAXON_LIST = [
     "Yeast",
 ]
 
-CONTEXT_LIST = [
-    "Island Systems",
-    "Mainland Systems",
-    "Marine Environment",
-    "Freshwater Environment",
-    "Tropical Region",
-    "Temperate Region",
-    "Polar Region",
-    "High-altitude Environment",
+GEOSCOPE_LIST = [
+    "Single Location",
+    "Multiple Locations",
+    "Global / Public Database Scale",
+    "Not Specified",
+]
+
+ENVIRONMENT_TYPE_LIST = [
+    "Marine",
+    "Freshwater",
+    "Terrestrial",
+    "Island",
+    "High-altitude",
+    "Polar",
+    "Tropical",
+    "Temperate",
     "Fragmented Habitat",
+    "Not Specified",
 ]
 
-ASSUMPTION_LIST = [
-    "Molecular Clock",
-    "Strict Clock",
-    "Relaxed Clock",
-    "Neutral Evolution Assumption",
-    "Selection Model",
-    "Panmictic Population",
-    "No Gene Flow",
-    "Gene Flow Allowed",
-    "Incomplete Lineage Sorting Considered",
-    "No Recombination",
-    "Constant Population Size",
-    "Bottleneck Model",
-    "Expansion Model",
+CONTRIBUTION_TYPE_LIST = [
+    "Empirical Study",
+    "Method / Model Paper",
+    "Resource / Dataset Paper",
+    "Review / Survey",
+    "Protocol / Technical Note",
 ]
 
 
-# ====== 모델 선택 (간단 안정 버전) ======
+# ====== 후보 개수(관계 늘리기용) ======
+# LLM 출력 자체가 너무 보수적이면 관계가 안 늘어서, 여기서부터 “복수 후보”를 강제
+TOPK_TARGET = {
+    "ResearchTask": 4,
+    "Method": 4,
+    "Software": 5,
+    "Taxon": 5,
+    "DataType": 4,
+    "GeoScope": 2,
+    "EnvironmentType": 3,
+    "ContributionType": 4,
+}
+
+
+# ====== 모델 선택(유지) ======
 def pick_model_id(client: genai.Client) -> str:
-    # 텍스트 라벨링은 flash/pro 텍스트 모델이 안정적
     preferred = [
         "models/gemini-2.0-flash",
         "models/gemini-1.5-flash",
@@ -148,7 +160,6 @@ def pick_model_id(client: genai.Client) -> str:
         except Exception:
             continue
 
-    # 그래도 안 되면 list()에서 되는 것 아무거나
     try:
         for m in client.models.list():
             name = getattr(m, "name", "") or ""
@@ -186,14 +197,10 @@ def load_done_ids(jsonl_out_path: str) -> Set[str]:
 def safe_parse_json(text: str) -> Optional[Any]:
     if not text:
         return None
-
     s = text.strip()
-
-    # 1) ```json ... ``` 코드펜스 제거
     s = re.sub(r"^```(?:json)?\s*", "", s, flags=re.IGNORECASE)
     s = re.sub(r"\s*```$", "", s)
 
-    # 2) 첫 '[' ~ 마지막 ']' 또는 첫 '{' ~ 마지막 '}' 만 뽑기
     l_arr, r_arr = s.find("["), s.rfind("]")
     l_obj, r_obj = s.find("{"), s.rfind("}")
 
@@ -204,14 +211,13 @@ def safe_parse_json(text: str) -> Optional[Any]:
     else:
         return None
 
-    # 3) trailing comma 제거: ", ]" / ", }" 패턴 정리
     blob = re.sub(r",\s*(\]|\})", r"\1", blob)
 
-    # 4) 파싱
     try:
         return json.loads(blob)
     except Exception:
         return None
+
 
 def parse_json_list_with_retries(
     client: genai.Client,
@@ -219,11 +225,6 @@ def parse_json_list_with_retries(
     model_id: str,
     max_extra_tries: int = 2
 ) -> Optional[List[Any]]:
-    """
-    1) 호출 → safe_parse_json
-    2) 실패하면 추가로 max_extra_tries번 재호출
-    3) 그래도 실패하면 None
-    """
     raw = call_gemini_with_retry(client, prompt, model_id)
     parsed = safe_parse_json(raw)
 
@@ -253,7 +254,6 @@ def call_gemini_with_retry(client: genai.Client, prompt: str, model_id: str) -> 
     last_err = None
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            # 1) 먼저 JSON mode 시도
             try:
                 resp = client.models.generate_content(
                     model=model_id,
@@ -262,7 +262,6 @@ def call_gemini_with_retry(client: genai.Client, prompt: str, model_id: str) -> 
                 )
                 return resp.text or ""
             except ClientError as e:
-                # 2) gemma처럼 JSON mode 미지원이면 일반 호출로 fallback
                 if "JSON mode is not enabled" in str(e) or "response_mime_type" in str(e):
                     resp = client.models.generate_content(model=model_id, contents=prompt)
                     return resp.text or ""
@@ -285,14 +284,16 @@ def call_gemini_with_retry(client: genai.Client, prompt: str, model_id: str) -> 
     raise RuntimeError(f"Failed after retries. Last error: {last_err}")
 
 
-
 def labels_only(arr: Any) -> str:
+    """CSV용: label/name만 뽑기"""
     if not isinstance(arr, list):
         return ""
     out = []
     for x in arr:
-        if isinstance(x, dict) and x.get("label"):
-            out.append(x["label"])
+        if isinstance(x, dict):
+            v = x.get("label") or x.get("name")
+            if v:
+                out.append(str(v))
     return "|".join(out)
 
 
@@ -304,15 +305,100 @@ def build_method_candidates_from_software(detected_softwares: List[str]) -> List
     return sorted(set(cands))
 
 
+# ====== (추가) GeoScope / EnvironmentType / ContributionType 후보 생성 ======
+def keyword_geoscope_candidates(text: str) -> List[str]:
+    t = (text or "").lower()
+
+    # Global/Public DB scale
+    if any(k in t for k in ["public database", "genbank", "gbif", "biodiversity information facility",
+                            "global dataset", "worldwide", "global scale", "meta-analysis", "meta analysis"]):
+        return ["Global / Public Database Scale"]
+
+    # multiple locations
+    if any(k in t for k in ["across", "multiple sites", "multiple populations", "across populations",
+                            "across regions", "across continents", "range-wide", "range wide", "multi-site", "multisite"]):
+        return ["Multiple Locations"]
+
+    # single location
+    if any(k in t for k in ["in ", "at ", "from "]):  # 매우 약한 신호라 단독으로 확정하지 않음
+        return ["Single Location", "Not Specified"]
+
+    return ["Not Specified"]
+
+
+def keyword_environment_candidates(text: str) -> List[str]:
+    t = (text or "").lower()
+    cands: List[str] = []
+
+    # Marine / Freshwater / Terrestrial
+    if any(k in t for k in ["marine", "ocean", "sea", "coastal", "reef", "intertidal"]):
+        cands.append("Marine")
+    if any(k in t for k in ["freshwater", "river", "lake", "stream"]):
+        cands.append("Freshwater")
+    if any(k in t for k in ["terrestrial", "forest", "grassland", "desert", "savanna", "landscape"]):
+        cands.append("Terrestrial")
+
+    # Island / High-altitude / Polar
+    if any(k in t for k in ["island", "archipelago"]):
+        cands.append("Island")
+    if any(k in t for k in ["high altitude", "high-altitude", "alpine", "mountain", "montane"]):
+        cands.append("High-altitude")
+    if any(k in t for k in ["polar", "arctic", "antarctic"]):
+        cands.append("Polar")
+
+    # Tropical / Temperate
+    if any(k in t for k in ["tropical", "tropics"]):
+        cands.append("Tropical")
+    if any(k in t for k in ["temperate"]):
+        cands.append("Temperate")
+
+    # Fragmented habitat
+    if any(k in t for k in ["fragmented habitat", "habitat fragmentation", "fragmentation"]):
+        cands.append("Fragmented Habitat")
+
+    if not cands:
+        cands.append("Not Specified")
+
+    # 정식 라벨만 유지
+    cands = [c for c in cands if c in ENVIRONMENT_TYPE_LIST]
+    return sorted(set(cands))
+
+
+def keyword_contribution_candidates(title: str, abstract: str) -> List[str]:
+    t = f"{title}\n{abstract}".lower()
+    cands: List[str] = []
+
+    # Review
+    if any(k in t for k in ["review", "survey", "meta-analysis", "meta analysis", "systematic review"]):
+        cands.append("Review / Survey")
+
+    # Resource/Dataset
+    if any(k in t for k in ["dataset", "database", "resource", "genome assembly", "genome assemblies",
+                            "reference genome", "data set", "data release", "catalog", "atlas"]):
+        cands.append("Resource / Dataset Paper")
+
+    # Protocol/Technical
+    if any(k in t for k in ["protocol", "pipeline", "workflow", "tutorial", "technical note", "implementation"]):
+        cands.append("Protocol / Technical Note")
+
+    # Method/Model
+    if any(k in t for k in ["we propose", "we introduce", "new method", "novel method", "model", "algorithm", "framework"]):
+        cands.append("Method / Model Paper")
+
+    # 기본값: empirical
+    if not cands:
+        cands.append("Empirical Study")
+    else:
+        # 리뷰/리소스/방법이 있어도 empirical도 같이 달 수 있게 (관계 늘리기)
+        cands.append("Empirical Study")
+
+    cands = [c for c in cands if c in CONTRIBUTION_TYPE_LIST]
+    return sorted(set(cands))
+
+
+# ====== 프롬프트 ======
 def build_batch_prompt(batch_payload: List[Dict[str, Any]]) -> str:
     payload_json = json.dumps(batch_payload, ensure_ascii=False)
-
-    # Assumption 스키마는 선택
-    assumption_schema = ""
-    assumption_allowed = ""
-    if USE_ASSUMPTION:
-        assumption_schema = '\n    "Assumption":   [{"label":"...","confidence":0.0,"evidence":"..."}],'
-        assumption_allowed = "\nAssumption:\n" + "\n".join("- " + x for x in ASSUMPTION_LIST) + "\n"
 
     return f"""
 You are an assistant that labels evolutionary biology papers.
@@ -320,27 +406,42 @@ You are an assistant that labels evolutionary biology papers.
 Input is a JSON array. For EACH item:
 - Use ONLY labels from the allowed lists below.
 - Do NOT invent labels.
-- Evidence must be a short quote from the abstract.
+- Evidence must be a SHORT quote from the abstract (exact phrase).
+- Return MULTIPLE candidates per field to increase recall (up to the recommended max shown).
+- If unsure, you may still output low-confidence candidates (>=0.20) rather than empty, AS LONG AS evidence supports it.
+- confidence is a float in [0,1].
 
 Hard constraints per paper:
-- Software must be a subset of software_detected. If software_detected is empty => Software MUST be [].
+- Software MUST be a subset of software_detected. If software_detected is empty => Software MUST be [].
 - If method_candidates is non-empty: Method labels must be chosen ONLY from method_candidates.
-- If method_candidates is empty: Method can still be [], or choose from keyword_method_candidates (provided).
 - Taxon must be chosen ONLY from taxon_candidates (provided). If none => [].
 - DataType must be chosen ONLY from datatype_candidates (provided). If none => [].
-- Context (Region/Environment) must be chosen ONLY from context_candidates (provided). If none => [].
-- If unsure, return [] for that field.
+- GeoScope must be chosen ONLY from geoscope_candidates (provided). If none => ["Not Specified"].
+- EnvironmentType must be chosen ONLY from environment_candidates (provided). If none => ["Not Specified"].
+- ContributionType must be chosen ONLY from contribution_candidates (provided). If none => ["Empirical Study"].
+
+Recommended max candidates per field:
+- ResearchTask: up to {TOPK_TARGET["ResearchTask"]}
+- Method: up to {TOPK_TARGET["Method"]}
+- Software: up to {TOPK_TARGET["Software"]}
+- Taxon: up to {TOPK_TARGET["Taxon"]}
+- DataType: up to {TOPK_TARGET["DataType"]}
+- GeoScope: up to {TOPK_TARGET["GeoScope"]}
+- EnvironmentType: up to {TOPK_TARGET["EnvironmentType"]}
+- ContributionType: up to {TOPK_TARGET["ContributionType"]}
 
 Return JSON ONLY with this schema (array length must match input length):
 [
   {{
     "paper_id": "...",
-    "ResearchTask": [{{"label":"...","confidence":0.0,"evidence":"..."}}],
-    "Method":       [{{"label":"...","confidence":0.0,"evidence":"..."}}],
-    "Software":     [{{"label":"...","confidence":0.0,"evidence":"..."}}],
-    "Taxon":        [{{"label":"...","confidence":0.0,"evidence":"..."}}],
-    "DataType":     [{{"label":"...","confidence":0.0,"evidence":"..."}}],
-    "Context":      [{{"label":"...","confidence":0.0,"evidence":"..."}}],{assumption_schema}
+    "ResearchTask":     [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "Method":           [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "Software":         [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "Taxon":            [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "DataType":         [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "GeoScope":         [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "EnvironmentType":  [{{"label":"...","confidence":0.0,"evidenceText":"..."}}],
+    "ContributionType": [{{"label":"...","confidence":0.0,"evidenceText":"..."}}]
   }}
 ]
 
@@ -361,9 +462,14 @@ Taxon:
 DataType:
 {chr(10).join("- " + x for x in DATATYPE_LIST)}
 
-Context:
-{chr(10).join("- " + x for x in CONTEXT_LIST)}
-{assumption_allowed}
+GeoScope:
+{chr(10).join("- " + x for x in GEOSCOPE_LIST)}
+
+EnvironmentType:
+{chr(10).join("- " + x for x in ENVIRONMENT_TYPE_LIST)}
+
+ContributionType:
+{chr(10).join("- " + x for x in CONTRIBUTION_TYPE_LIST)}
 
 Papers(JSON):
 {payload_json}
@@ -387,20 +493,43 @@ def ensure_csv_header(csv_path: str) -> None:
         "method_candidates_kw",
         "datatype_candidates",
         "taxon_candidates",
-        "context_candidates",
+        "geoscope_candidates",
+        "environment_candidates",
+        "contribution_candidates",
         "ResearchTask_labels",
         "Method_labels",
         "Software_labels",
         "Taxon_labels",
         "DataType_labels",
-        "Context_labels",
+        "GeoScope_labels",
+        "EnvironmentType_labels",
+        "ContributionType_labels",
     ]
-    if USE_ASSUMPTION:
-        base_fields.append("Assumption_labels")
 
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=base_fields)
         writer.writeheader()
+
+
+def coerce_list(x: Any) -> List[Dict[str, Any]]:
+    """LLM 출력 방어: list[dict]만 통과 + 키 통일(label/confidence/evidenceText)."""
+    if not isinstance(x, list):
+        return []
+    out: List[Dict[str, Any]] = []
+    for it in x:
+        if not isinstance(it, dict):
+            continue
+        label = it.get("label") or it.get("name")
+        if not label or not str(label).strip():
+            continue
+        conf = it.get("confidence", 0.0)
+        try:
+            conf = float(conf)
+        except Exception:
+            conf = 0.0
+        ev = it.get("evidenceText") or it.get("evidence") or ""
+        out.append({"label": str(label).strip(), "confidence": conf, "evidenceText": str(ev)})
+    return out
 
 
 def main():
@@ -434,17 +563,18 @@ def main():
         "method_candidates_kw",
         "datatype_candidates",
         "taxon_candidates",
-        "context_candidates",
+        "geoscope_candidates",
+        "environment_candidates",
+        "contribution_candidates",
         "ResearchTask_labels",
         "Method_labels",
         "Software_labels",
         "Taxon_labels",
         "DataType_labels",
-        "Context_labels",
+        "GeoScope_labels",
+        "EnvironmentType_labels",
+        "ContributionType_labels",
     ]
-    if USE_ASSUMPTION:
-        fieldnames.append("Assumption_labels")
-
     writer = csv.DictWriter(out_csv, fieldnames=fieldnames)
 
     client = genai.Client()
@@ -452,6 +582,8 @@ def main():
 
     total = len(todo)
     processed = 0
+
+    SKIP_LOG = "paper_annotations_skipped_v3.txt"
 
     for start in range(0, total, BATCH_SIZE):
         chunk = todo[start:start + BATCH_SIZE]
@@ -470,11 +602,11 @@ def main():
             softwares = extract_software(text)
             method_cands_sw = build_method_candidates_from_software(softwares)
             method_cands_kw = [m for m in keyword_method_candidates(text) if m in FULL_METHOD_LIST]
+            method_candidates = sorted(set(method_cands_sw + method_cands_kw))
 
             datatype_cands = [d for d in keyword_datatype_candidates(text) if d in DATATYPE_LIST]
 
             taxon_cands = [t for t in keyword_taxon_candidates(text) if t in TAXON_LIST]
-            # 모델생물 키워드가 잡히면 Model Organisms + 해당 생물 라벨도 후보에 포함
             mos = keyword_model_organisms(text)  # e.g., ["Drosophila"]
             for mo in mos:
                 if mo in TAXON_LIST and mo not in taxon_cands:
@@ -482,11 +614,9 @@ def main():
                 if "Model Organisms" in TAXON_LIST and "Model Organisms" not in taxon_cands:
                     taxon_cands.append("Model Organisms")
 
-            context_cands = [c for c in keyword_context_candidates(text) if c in CONTEXT_LIST]
-
-            assumption_cands = []
-            if USE_ASSUMPTION:
-                assumption_cands = [a for a in keyword_assumption_candidates(text) if a in ASSUMPTION_LIST]
+            geoscope_cands = [g for g in keyword_geoscope_candidates(text) if g in GEOSCOPE_LIST]
+            env_cands = [e for e in keyword_environment_candidates(text) if e in ENVIRONMENT_TYPE_LIST]
+            contrib_cands = [c for c in keyword_contribution_candidates(title, abstract) if c in CONTRIBUTION_TYPE_LIST]
 
             local_detected[pid] = {
                 "software": softwares,
@@ -494,8 +624,9 @@ def main():
                 "method_candidates_kw": method_cands_kw,
                 "datatype_candidates": sorted(set(datatype_cands)),
                 "taxon_candidates": sorted(set(taxon_cands)),
-                "context_candidates": sorted(set(context_cands)),
-                "assumption_candidates": sorted(set(assumption_cands)),
+                "geoscope_candidates": sorted(set(geoscope_cands)),
+                "environment_candidates": sorted(set(env_cands)),
+                "contribution_candidates": sorted(set(contrib_cands)),
             }
 
             payload.append({
@@ -504,29 +635,24 @@ def main():
                 "abstract": abstract,
                 "topics_concepts": topics[:12],
                 "software_detected": softwares,
-                "method_candidates": sorted(set(method_cands_sw + method_cands_kw)),
+                "method_candidates": method_candidates,
                 "keyword_method_candidates": method_cands_kw,
                 "datatype_candidates": sorted(set(datatype_cands)),
                 "taxon_candidates": sorted(set(taxon_cands)),
-                "context_candidates": sorted(set(context_cands)),
-                "assumption_candidates": sorted(set(assumption_cands)) if USE_ASSUMPTION else [],
+                "geoscope_candidates": sorted(set(geoscope_cands)) or ["Not Specified"],
+                "environment_candidates": sorted(set(env_cands)) or ["Not Specified"],
+                "contribution_candidates": sorted(set(contrib_cands)) or ["Empirical Study"],
             })
 
         prompt = build_batch_prompt(payload)
-        
-        # (선택) 스킵 로그 파일
-        SKIP_LOG = "paper_annotations_skipped_v3.txt"
-
         parsed = parse_json_list_with_retries(client, prompt, MODEL_ID, max_extra_tries=2)
 
         if not isinstance(parsed, list):
-            # 이 배치만 스킵하고 계속 진행 (완주 보장)
             end = min(start + BATCH_SIZE, total)
-            skip_ids = [p.get("id","") for p in chunk]
+            skip_ids = [p.get("id", "") for p in chunk]
             print("❌ [SKIP] Gemini output not parseable as JSON list. Skipping batch "
-                f"{start+1}-{end}. ids={skip_ids[:3]}{'...' if len(skip_ids)>3 else ''}")
+                  f"{start+1}-{end}. ids={skip_ids[:3]}{'...' if len(skip_ids)>3 else ''}")
 
-            # 스킵된 paper_id 기록 (나중에 재처리 가능)
             try:
                 with open(SKIP_LOG, "a", encoding="utf-8") as sf:
                     for sid in skip_ids:
@@ -534,16 +660,14 @@ def main():
                             sf.write(sid + "\n")
             except Exception:
                 pass
-
             continue
-
 
         by_id = {x.get("paper_id"): x for x in parsed if isinstance(x, dict)}
 
         for p in chunk:
             pid = p.get("id", "")
             det = local_detected.get(pid, {})
-            ann = by_id.get(pid, {})
+            ann = by_id.get(pid, {}) or {}
 
             record = {
                 **p,
@@ -552,17 +676,16 @@ def main():
                     "model": MODEL_ID,
                 },
                 "_annotation": {
-                    "ResearchTask": ann.get("ResearchTask", []) if isinstance(ann.get("ResearchTask", []), list) else [],
-                    "Method":       ann.get("Method", []) if isinstance(ann.get("Method", []), list) else [],
-                    "Software":     ann.get("Software", []) if isinstance(ann.get("Software", []), list) else [],
-                    "Taxon":        ann.get("Taxon", []) if isinstance(ann.get("Taxon", []), list) else [],
-                    "DataType":     ann.get("DataType", []) if isinstance(ann.get("DataType", []), list) else [],
-                    "Context":      ann.get("Context", []) if isinstance(ann.get("Context", []), list) else [],
+                    "ResearchTask":     coerce_list(ann.get("ResearchTask")),
+                    "Method":           coerce_list(ann.get("Method")),
+                    "Software":         coerce_list(ann.get("Software")),
+                    "Taxon":            coerce_list(ann.get("Taxon")),
+                    "DataType":         coerce_list(ann.get("DataType")),
+                    "GeoScope":         coerce_list(ann.get("GeoScope")),
+                    "EnvironmentType":  coerce_list(ann.get("EnvironmentType")),
+                    "ContributionType": coerce_list(ann.get("ContributionType")),
                 }
             }
-
-            if USE_ASSUMPTION:
-                record["_annotation"]["Assumption"] = ann.get("Assumption", []) if isinstance(ann.get("Assumption", []), list) else []
 
             out_jsonl.write(json.dumps(record, ensure_ascii=False) + "\n")
 
@@ -576,16 +699,18 @@ def main():
                 "method_candidates_kw": "|".join(det.get("method_candidates_kw", [])),
                 "datatype_candidates": "|".join(det.get("datatype_candidates", [])),
                 "taxon_candidates": "|".join(det.get("taxon_candidates", [])),
-                "context_candidates": "|".join(det.get("context_candidates", [])),
+                "geoscope_candidates": "|".join(det.get("geoscope_candidates", [])),
+                "environment_candidates": "|".join(det.get("environment_candidates", [])),
+                "contribution_candidates": "|".join(det.get("contribution_candidates", [])),
                 "ResearchTask_labels": labels_only(record["_annotation"]["ResearchTask"]),
                 "Method_labels": labels_only(record["_annotation"]["Method"]),
                 "Software_labels": labels_only(record["_annotation"]["Software"]),
                 "Taxon_labels": labels_only(record["_annotation"]["Taxon"]),
                 "DataType_labels": labels_only(record["_annotation"]["DataType"]),
-                "Context_labels": labels_only(record["_annotation"]["Context"]),
+                "GeoScope_labels": labels_only(record["_annotation"]["GeoScope"]),
+                "EnvironmentType_labels": labels_only(record["_annotation"]["EnvironmentType"]),
+                "ContributionType_labels": labels_only(record["_annotation"]["ContributionType"]),
             }
-            if USE_ASSUMPTION:
-                row["Assumption_labels"] = labels_only(record["_annotation"].get("Assumption", []))
 
             writer.writerow(row)
             processed += 1
