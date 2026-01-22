@@ -24,13 +24,14 @@ except Exception:
 
 
 # ====== 설정 ======
-JSONL_IN  = "openalex_evolbio_tiered_500.jsonl"
-JSONL_OUT = "paper_annotations_all_v3.jsonl"
-CSV_OUT   = "paper_annotations_all_v3.csv"
+JSONL_IN = "data/raw/openalex_evolbio_tiered_500.jsonl"
+
+JSONL_OUT = "data/raw/annotations/paper_annotations_all_v3.jsonl"
+CSV_OUT   = "data/raw/annotations/paper_annotations_all_v3.csv"
 
 MODEL_ID = "models/gemini-2.0-flash"
 
-BATCH_SIZE  = 6
+BATCH_SIZE  = 3
 MAX_PAPERS  = 500
 
 MAX_RETRIES       = 8
@@ -212,6 +213,29 @@ def safe_parse_json(text: str) -> Optional[Any]:
     except Exception:
         return None
 
+def parse_json_list_with_retries(
+    client: genai.Client,
+    prompt: str,
+    model_id: str,
+    max_extra_tries: int = 2
+) -> Optional[List[Any]]:
+    """
+    1) 호출 → safe_parse_json
+    2) 실패하면 추가로 max_extra_tries번 재호출
+    3) 그래도 실패하면 None
+    """
+    raw = call_gemini_with_retry(client, prompt, model_id)
+    parsed = safe_parse_json(raw)
+
+    tries = 0
+    while not isinstance(parsed, list) and tries < max_extra_tries:
+        tries += 1
+        print(f"⚠️ JSON parse failed. Retrying extra {tries}/{max_extra_tries} ...")
+        time.sleep(2 * tries)
+        raw = call_gemini_with_retry(client, prompt, model_id)
+        parsed = safe_parse_json(raw)
+
+    return parsed if isinstance(parsed, list) else None
 
 
 def extract_retry_delay_seconds(err: ClientError) -> int:
@@ -343,6 +367,9 @@ Context:
 
 Papers(JSON):
 {payload_json}
+
+Return ONLY a valid JSON array. No markdown fences. No explanations. No trailing text.
+The output MUST start with '[' and end with ']'.
 """.strip()
 
 
@@ -486,14 +513,30 @@ def main():
             })
 
         prompt = build_batch_prompt(payload)
-        raw = call_gemini_with_retry(client, prompt, MODEL_ID)
-        parsed = safe_parse_json(raw)
+        
+        # (선택) 스킵 로그 파일
+        SKIP_LOG = "paper_annotations_skipped_v3.txt"
+
+        parsed = parse_json_list_with_retries(client, prompt, MODEL_ID, max_extra_tries=2)
 
         if not isinstance(parsed, list):
-            raise RuntimeError(
-                "Gemini output is not a JSON list. Raw (first 500 chars):\n"
-                + (raw[:500] if raw else "")
-            )
+            # 이 배치만 스킵하고 계속 진행 (완주 보장)
+            end = min(start + BATCH_SIZE, total)
+            skip_ids = [p.get("id","") for p in chunk]
+            print("❌ [SKIP] Gemini output not parseable as JSON list. Skipping batch "
+                f"{start+1}-{end}. ids={skip_ids[:3]}{'...' if len(skip_ids)>3 else ''}")
+
+            # 스킵된 paper_id 기록 (나중에 재처리 가능)
+            try:
+                with open(SKIP_LOG, "a", encoding="utf-8") as sf:
+                    for sid in skip_ids:
+                        if sid:
+                            sf.write(sid + "\n")
+            except Exception:
+                pass
+
+            continue
+
 
         by_id = {x.get("paper_id"): x for x in parsed if isinstance(x, dict)}
 
